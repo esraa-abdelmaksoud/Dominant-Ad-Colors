@@ -1,4 +1,4 @@
-# Dominant Ad Colors
+# Dominant Social Media Advertising Colors
 
 The performance of social media ads is not only about targeting but also about ad design. The design of the ad is a main performance factor color, but the colors also have an effect. Some types of audience can be attracted to certain colors, and this is what is covered.
 
