@@ -22,12 +22,13 @@ def get_dominant_colors(img):
 def bgr_to_hex(dominants):
 
     color_1, color_2, color_3 = dominants[0], dominants[1], dominants[2]
+    colors = [np.flip(color_1), np.flip(color_2), np.flip(color_3)]
     c1 = "#{:02x}{:02x}{:02x}".format(color_1[2], color_1[1], color_1[0])
     c2 = "#{:02x}{:02x}{:02x}".format(color_2[2], color_2[1], color_2[0])
     c3 = "#{:02x}{:02x}{:02x}".format(color_3[2], color_3[1], color_3[0])
-    hex = f"{c1} \n{c2} \n{c3} \n"
-    
-    return hex
+    hex = f"{c1}\n{c2}\n{c3}\n"
+
+    return hex, colors
 
 def paint_colors(dominants, area=50):
 
@@ -41,6 +42,7 @@ def paint_colors(dominants, area=50):
     out_img[:, 0:area] = color_1     #(y,x)
     out_img[:, area:area*2] = color_2
     out_img[:, area*2:area*3] = color_3
+
     return out_img
 
 
@@ -50,11 +52,14 @@ def process_single_img(path, file):
     except:
         raise ValueError("Please make sure you use a correct path and image file.")
     dominants = get_dominant_colors(img)
-    hex = bgr_to_hex(dominants)
+    hex, colors = bgr_to_hex(dominants)
+    hex_rgb = f"RGB 1: {colors[0]}\nRGB 2: {colors[1]}\nRGB 3: {colors[2]}\n{hex}"
+
+
     colors_img = paint_colors(dominants, area=50)
     cv2.imwrite(r'{}/dominant colors.jpg'.format(path), colors_img)
 
-    return img, hex
+    return img, hex_rgb
 
 
 def process_multiple_imgs(path):

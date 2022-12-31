@@ -13,4 +13,12 @@ Output:
 
 ![dominant colors-AutumnTree_EN png](https://user-images.githubusercontent.com/73304837/169667253-36953329-079f-4d38-b810-2dfcb03c6dbb.jpg)
 
+#573642
+#d6b9df
+#766394
+
 ![dominant colors-Cat_EN jpg](https://user-images.githubusercontent.com/73304837/169667435-1e7bb6c0-03ee-4761-8d2b-587cd1c2260e.jpg)
+
+#fde262
+#3c3a44
+#8b958e
