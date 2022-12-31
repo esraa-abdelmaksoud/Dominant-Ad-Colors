@@ -7,7 +7,8 @@ if multiple == "y" or multiple == "Y":
     process_multiple_imgs(path)
 elif multiple == "n" or multiple == "N":
     file = input("Please enter full file name with the extension. \n")
-    process_single_img(path, file)
+    _, hex = process_single_img(path, file)
+    print(hex)
 else:
     raise ValueError("Please use y for multiple images and n for single images.")
 

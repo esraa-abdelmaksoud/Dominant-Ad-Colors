@@ -19,6 +19,15 @@ def get_dominant_colors(img):
 
     return dominants
 
+def bgr_to_hex(dominants):
+
+    color_1, color_2, color_3 = dominants[0], dominants[1], dominants[2]
+    c1 = "#{:02x}{:02x}{:02x}".format(color_1[2], color_1[1], color_1[0])
+    c2 = "#{:02x}{:02x}{:02x}".format(color_2[2], color_2[1], color_2[0])
+    c3 = "#{:02x}{:02x}{:02x}".format(color_3[2], color_3[1], color_3[0])
+    hex = f"{c1} \n{c2} \n{c3} \n"
+    
+    return hex
 
 def paint_colors(dominants, area=50):
 
@@ -37,14 +46,15 @@ def paint_colors(dominants, area=50):
 
 def process_single_img(path, file):
     try:
-        img = cv2.imread(r'{}\{}'.format(path, file))
+        img = cv2.imread(r'{}/{}'.format(path, file))
     except:
         raise ValueError("Please make sure you use a correct path and image file.")
     dominants = get_dominant_colors(img)
+    hex = bgr_to_hex(dominants)
     colors_img = paint_colors(dominants, area=50)
-    cv2.imwrite(r'{}\dominant colors-{}.jpg'.format(path, file), colors_img)
+    cv2.imwrite(r'{}/dominant colors.jpg'.format(path), colors_img)
 
-    return img
+    return img, hex
 
 
 def process_multiple_imgs(path):
@@ -54,14 +64,17 @@ def process_multiple_imgs(path):
     except:
         raise ValueError("Please use a correct path.")
 
+    hexs = ""
     # img_rows = math.ceil(len(files)/3)
     for i, file in enumerate(files):
         try:
-            img = cv2.imread(r'{}\{}'.format(path, file))
+            img = cv2.imread(r'{}/{}'.format(path, file))
         except:
             raise ValueError("Please make sure you use image files.")
 
         dominants = get_dominant_colors(img)
+        hex = bgr_to_hex(dominants)
+        hexs += hex
         colors_img = paint_colors(dominants, area=50)
 
         if i == 0:
@@ -69,6 +82,6 @@ def process_multiple_imgs(path):
         else:
             org_img = np.concatenate((org_img, colors_img), axis = 0)
 
-    cv2.imwrite(r'{}\dominant colors.jpg'.format(path), org_img)
+    cv2.imwrite(r'{}/dominant colors.jpg'.format(path), org_img)
 
-    return img
+    return img, hexs
