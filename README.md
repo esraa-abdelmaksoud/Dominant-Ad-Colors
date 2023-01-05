@@ -4,6 +4,8 @@ The performance of social media ads is not only about targeting but also about a
 
 This repository contains a python solution that extracts the top 3 dominant colors per image and visualizes them. It can also process multiple images and join the results together in an image for designer reference. The number 3 was chosen to cover the main 2 design colors and the text color when possible.
 
+Try the live version using [HuggingFace Spaces](https://huggingface.co/spaces/esraa-abdelmaksoud/Dominant-Ad-Colors-Detection).
+
 An example for single image input:
 
 <img src="https://user-images.githubusercontent.com/73304837/169667245-17f9c47b-fa55-418c-8075-bbf631a25441.png" width="50%" height="50%">
